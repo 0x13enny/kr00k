@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ## Usage 
 usage: kr00k.py [-h] [-i INTERFACE] [-t VICTIM] [-v VERBOSE] [-c CHANNEL]
                 [-w WRITE_TO] [-r READ] [--bssid BSSID]
-
+```
 optional arguments:
   -i INTERFACE,   --interface INTERFACE
   -t VICTIM,      --target VICTIM
@@ -22,3 +22,4 @@ optional arguments:
   -w WRITE_TO,    --write WRITE_TO
   -r READ,        --read READ
   --bssid         BSSID
+```
